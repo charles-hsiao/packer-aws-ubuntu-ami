@@ -18,7 +18,18 @@ wget ${PACKAGE_URL} # ex: https://releases.hashicorp.com/packer/1.3.2/packer_1.3
 unzip ${PACKER_ZIP_FILE} # ex: packer_1.3.2_linux_amd64.zip
 ```
 
-### 3. Install gnu-sed (Only on Mac)
+### 3. Install jq: [Official Download website](https://stedolan.github.io/jq/download/)
+On Mac
+```
+brew install jq
+```
+
+On Ubuntu
+```
+sudo apt-get install jq
+```
+
+### 4. Install gnu-sed (Only on Mac)
 OSX's sed is BSD version. In order to align the sed command on Ubuntu GNU version, please install gnu-sed.
 On Mac
 ```

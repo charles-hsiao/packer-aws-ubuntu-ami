@@ -1,0 +1,44 @@
+{
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "{{user `AWS_REGION`}}",
+    "source_ami": "{{user `UPSTREAM_UBUNTU_AMI`}}",
+    "instance_type": "{{user `instance_type`}}",
+    "ssh_username": "{{user `ssh_username`}}",
+    "ami_name": "{{user `distribution`}}_{{user `UBUNTU_VERSION_SHORT`}}_{{user `UPSTREAM_UBUNTU_RELEASE`}}_{{user `LATEST_GIT_HASH`}}",
+    "ami_block_device_mappings":[{
+      "device_name": "{{user `device_name`}}",
+      "delete_on_termination": true
+    }],
+    "tags": {
+      "Name": "{{user `distribution`}}_{{user `UBUNTU_VERSION_SHORT`}}_{{user `UPSTREAM_UBUNTU_RELEASE`}}_{{user `LATEST_GIT_HASH`}}",
+      "distribution": "{{user `distribution`}}",
+      "version": "{{user `UBUNTU_VERSION_SHORT`}}",
+      "suite": "{{user `suite`}}",
+      "base_image": "{{user `UPSTREAM_UBUNTU_AMI`}}",
+      "release": "{{user `UPSTREAM_UBUNTU_RELEASE`}}",
+      "git_hash": "{{user `LATEST_GIT_HASH`}}"
+    }
+  }],
+
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "./share/common/client.rb",
+      "destination": "/tmp/client.rb"
+    },
+    {
+      "type": "file",
+      "source": "./share/common/role.js",
+      "destination": "/tmp/role.js"
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "./share/1804/install_chef.sh",
+        "./share/common/install_ntp.sh",
+        "./share/common/install_awscli.sh"
+      ]
+    }
+  ]
+}

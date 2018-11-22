@@ -14,8 +14,10 @@ brew install packer
 On Ubuntu
 ```
 # Download the latest precompiled binary, get the suitable package here: https://www.packer.io/downloads.html
-wget ${PACKAGE_URL} # ex: https://releases.hashicorp.com/packer/1.3.2/packer_1.3.2_linux_amd64.zip
-unzip ${PACKER_ZIP_FILE} # ex: packer_1.3.2_linux_amd64.zip
+# ex: https://releases.hashicorp.com/packer/1.3.2/packer_1.3.2_linux_amd64.zip
+wget ${PACKAGE_URL} 
+# ex: packer_1.3.2_linux_amd64.zip
+unzip ${PACKER_ZIP_FILE} 
 ```
 
 ### 3. Install jq: [Official Download website](https://stedolan.github.io/jq/download/)

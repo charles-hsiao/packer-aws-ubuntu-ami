@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Default settings
 #aws_region='ap-southeast-1'
 #ami_volume='hvm:ebs-ssd'

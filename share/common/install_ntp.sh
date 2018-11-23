@@ -2,6 +2,9 @@
 
 set -e
 
+sudo apt-get upgrade
+sudo apt-get update
+
 sudo apt-get install -y ntp
 sudo apt-get install -y ntpdate
 sudo apt-get install -y ntp-doc

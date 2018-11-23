@@ -35,7 +35,7 @@ echo "========================================="
 
 echo "[DEBUG] Start to inspect latest AMI id of official Ubuntu AMI"
 
-AMI_INFO=$( sh cmd/aws-ami-inspect.sh ${DETECTED_OS} ${AWS_REGION} ${UBUNTU_VERSION} ${AMI_VOLUME} ${AMI_ARCH} )
+AMI_INFO=$( bash cmd/aws-ami-inspect.sh ${DETECTED_OS} ${AWS_REGION} ${UBUNTU_VERSION} ${AMI_VOLUME} ${AMI_ARCH} )
 UPSTREAM_UBUNTU_RELEASE=$( echo ${AMI_INFO} | jq --raw-output -c '.UBUNTU_RELEASE' )
 UPSTREAM_UBUNTU_AMI=$( echo ${AMI_INFO} | jq --raw-output -c '.AMI_ID' )
 

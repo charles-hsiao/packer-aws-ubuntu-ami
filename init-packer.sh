@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Default settings
-#aws_region='ap-southeast-1'
-#ami_volume='hvm:ebs-ssd'
-#ami_arch="amd64"
-
 # Search AMI's AWS Owner
 AWS_OWNER=$1
 

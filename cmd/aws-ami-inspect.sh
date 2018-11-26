@@ -48,17 +48,17 @@ fi
 
 if [[ ${OS} == "Darwin" ]];
 then 
-AMI_INFO=$(curl -s "https://cloud-images.ubuntu.com/locator/ec2/releasesTable" \
-       | gsed '$x;$G;/\(.*\),/!H;//!{$!d};  $!x;$s//\1/;s/^\n//' \
-       | jq -c ".aaData[] | select(contains([\"${UBUNTU_VERSION}\", \"${AWS_REGION}\", \"${AMI_VOLUME}\", \"${AMI_ARCH}\"]))")
-AMI_ID=$(echo ${AMI_INFO} | grep -o 'ami-[a-z0-9]\+' | head -1)
-UBUNTU_RELEASE=$(echo ${AMI_INFO} | jq --raw-output -c '.[5]')
+  AMI_INFO=$(curl -s "https://cloud-images.ubuntu.com/locator/ec2/releasesTable" \
+           | gsed '$x;$G;/\(.*\),/!H;//!{$!d};  $!x;$s//\1/;s/^\n//' \
+           | jq -c ".aaData[] | select(contains([\"${UBUNTU_VERSION}\", \"${AWS_REGION}\", \"${AMI_VOLUME}\", \"${AMI_ARCH}\"]))")
+  AMI_ID=$(echo ${AMI_INFO} | grep -o 'ami-[a-z0-9]\+' | head -1)
+  UBUNTU_RELEASE=$(echo ${AMI_INFO} | jq --raw-output -c '.[5]')
 elif [[ ${OS} == "Linux" ]]; then
-AMI_INFO=$(curl -s "https://cloud-images.ubuntu.com/locator/ec2/releasesTable" \
-       | sed '$x;$G;/\(.*\),/!H;//!{$!d};  $!x;$s//\1/;s/^\n//' \
-       | jq -c ".aaData[] | select(contains([\"${UBUNTU_VERSION}\", \"${AWS_REGION}\", \"${AMI_VOLUME}\", \"${AMI_ARCH}\"]))")
-AMI_ID=$(echo ${AMI_INFO} | grep -o 'ami-[a-z0-9]\+' | head -1)
-UBUNTU_RELEASE=$(echo ${AMI_INFO} | jq --raw-output -c '.[5]')
+  AMI_INFO=$(curl -s "https://cloud-images.ubuntu.com/locator/ec2/releasesTable" \
+           | sed '$x;$G;/\(.*\),/!H;//!{$!d};  $!x;$s//\1/;s/^\n//' \
+           | jq -c ".aaData[] | select(contains([\"${UBUNTU_VERSION}\", \"${AWS_REGION}\", \"${AMI_VOLUME}\", \"${AMI_ARCH}\"]))")
+  AMI_ID=$(echo ${AMI_INFO} | grep -o 'ami-[a-z0-9]\+' | head -1)
+  UBUNTU_RELEASE=$(echo ${AMI_INFO} | jq --raw-output -c '.[5]')
 fi
 
 echo "{\"AMI_ID\":\"${AMI_ID}\",\"UBUNTU_RELEASE\":\"${UBUNTU_RELEASE}\"}"

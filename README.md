@@ -38,3 +38,19 @@ On Mac
 brew install gnu-sed
 ``` 
 
+## Usage
+
+### Use init-packer.sh to build AMI
+init-packer.sh will check:
+1. Upstream Ubuntu official AMI
+2. Latest git commit hash 
+
+Command
+```
+bash init-packer.sh ${AWS_OWNER} ${AWS_REGION} ${UBUNTU_VERSION} ${AWS_VOLUME} ${AMI_ARCH}
+```
+
+Example
+```
+bash init-packer.sh 100005588888 ap-southeast-1 18.04 hvm:ebs-ssd amd64
+```
